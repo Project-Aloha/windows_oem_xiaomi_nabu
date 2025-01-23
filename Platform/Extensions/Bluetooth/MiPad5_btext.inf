@@ -1,0 +1,56 @@
+;/* 
+;  Copyright (c) 2017 Qualcomm Technologies, Inc.
+;  All Rights Reserved.
+;  Confidential and Proprietary - Qualcomm Technologies, Inc.
+;*/
+
+[Version]
+Signature          = "$Windows NT$"
+Class              = Extension
+ClassGUID          = {e2f84ce7-8efa-411c-aa69-97454ca4cb57}
+Provider       = %QCA%
+DriverVer      = 07/04/2024, 1.0.2100.0000
+ExtensionId    = {8CB101C6-3778-4F2C-9295-27BE9A778250}
+CatalogFile.NT     = MiPad5_btext.cat
+
+[Manufacturer]
+%QCA% = QCABTEXT, NTARM64.10.0...16299
+
+[QCABTEXT.NTARM64.10.0...16299]
+%MSM8150_BT_NVM_Ext1% = QCABTNVMEXT, ACPI\VEN_QCOM&DEV_0571&SUBSYS_CDP08150
+%MSM8150_BT_NVM_Ext2% = QCABTNVMEXT, ACPI\VEN_QCOM&DEV_0571&SUBSYS_CDPA8150
+%MSM8150_BT_NVM_Ext3% = QCABTNVMEXT, ACPI\VEN_QCOM&DEV_0571&SUBSYS_MTP08150
+%MSM8150_BT_NVM_Ext4% = QCABTNVMEXT, ACPI\VEN_QCOM&DEV_0571&SUBSYS_MTPA8150
+%MSM8150_BT_NVM_Ext5% = QCABTNVMEXT, ACPI\VEN_QCOM&DEV_0571&SUBSYS_MTPB8150
+%MSM8150_BT_NVM_Ext6% = QCABTNVMEXT, ACPI\VEN_QCOM&DEV_0571&SUBSYS_MTPD8150
+%MSM8150_BT_NVM_Ext7% = QCABTNVMEXT, ACPI\VEN_QCOM&DEV_0571&SUBSYS_CLS08150
+%MSM8150_BT_NVM_Ext8% = QCABTNVMEXT, ACPI\VEN_QCOM&DEV_0571&SUBSYS_CLSA8150
+%MSM8150_BT_NVM_Ext9% = QCABTNVMEXT, ACPI\VEN_QCOM&DEV_0571&SUBSYS_CLSB8150 ; OEM should edit it to their setting
+
+[QCABTNVMEXT]
+
+[QCABTNVMEXT.HW]
+AddReg = BTNVMEXT.HW.AddReg
+
+[BTNVMEXT.HW.AddReg]
+HKR,,NVMTAG36,0x00000001, ff,03,0f,07,08,09,09,00,00,09,09,04,00,04,08,00   ;It's an invalid value for QC internal platforms, OEM should set this with their fine tuned value, it should be 16 bytes such as FF 03 0F 09 09 09 09 00 00 09 07 04 00 00 08 00
+HKR,,NVMTAG83,0x00000001, 08,08,08,00,01,03,05,08   ;It's an invalid value for QC internal platforms, OEM should set this with their fine tuned value, it should be 08 bytes such as 07 07 07 00 01 03 05 07
+HKR,,NVMTAG192,0x00000001, 00  ;It's an invalid value for QC internal platforms, OEM should set this with their fine tuned value, it should be 14 bytes such as 50 00 F0 00 00 00 00 00 00 00 00 00 00 00
+							   ;Che2.1.5/Che2.1.4
+
+HKR,,NVMTAG200,0x00000001, 00,00,50,00,f0,00,00,00,00,00,00,00,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64  ;It's an invalid value for QC internal platforms, OEM should set this with their fine tuned value, it should be 28 bytes 
+							   ;for Che3.2. RENELL project/ platformID equal to 7180
+
+HKR,,SwiftPairEnabled, 0x00010001, 1
+
+[Strings]
+QCA                   = "Xiaomi"
+MSM8150_BT_NVM_Ext1   = "Mi Pad 5 Bluetooth UART Transport Device Ext"
+MSM8150_BT_NVM_Ext2   = "Mi Pad 5 Bluetooth UART Transport Device Ext"
+MSM8150_BT_NVM_Ext3   = "Mi Pad 5 Bluetooth UART Transport Device Ext"
+MSM8150_BT_NVM_Ext4   = "Mi Pad 5 Bluetooth UART Transport Device Ext"
+MSM8150_BT_NVM_Ext5   = "Mi Pad 5 Bluetooth UART Transport Device Ext"
+MSM8150_BT_NVM_Ext6   = "Mi Pad 5 Bluetooth UART Transport Device Ext"
+MSM8150_BT_NVM_Ext7   = "Mi Pad 5 Bluetooth UART Transport Device Ext"
+MSM8150_BT_NVM_Ext8   = "Mi Pad 5 Bluetooth UART Transport Device Ext"
+MSM8150_BT_NVM_Ext9   = "Mi Pad 5 Bluetooth UART Transport Device Ext"
