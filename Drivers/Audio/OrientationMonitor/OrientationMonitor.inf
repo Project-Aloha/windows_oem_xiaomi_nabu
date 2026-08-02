@@ -1,0 +1,52 @@
+;
+; OrientationMonitor.inf
+;
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = Media
+ClassGuid   = {4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider    = %ManufacturerName%
+CatalogFile = OrientationMonitor.cat
+DriverVer = 07/03/2026,23.54.16.278
+PnpLockdown = 1
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+OrientationMonitor.exe = 1,,
+
+[Manufacturer]
+%ManufacturerName%=Standard,NTARM64
+
+[Standard.NTARM64]
+%OrientationMonitor.DeviceDesc%=OrientationMonitor_Device, Root\OrientationMonitor
+
+[OrientationMonitor_Device.NT]
+CopyFiles=OrientationMonitor_Dir
+
+[OrientationMonitor_Dir]
+OrientationMonitor.exe
+
+[OrientationMonitor_Device.NT.Services]
+AddService = OrientationMonitor,, OrientationMonitor_Service_Inst
+
+[OrientationMonitor_Service_Inst]
+DisplayName    = %OrientationMonitor.SVCDESC%
+ServiceType    = 16              ; SERVICE_WIN32_OWN_PROCESS
+StartType      = 2               ; SERVICE_AUTO_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\OrientationMonitor.exe
+
+[Strings]
+ManufacturerName       = "remtrik"
+DiskName               = "OrientationMonitor Installation Disk"
+OrientationMonitor.DeviceDesc = "Orientation Monitor"
+OrientationMonitor.SVCDESC    = "Orientation Monitor"
+
+REG_SZ = 0x00000000
+
