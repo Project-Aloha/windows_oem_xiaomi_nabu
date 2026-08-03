@@ -8,7 +8,7 @@ Class       = Media
 ClassGuid   = {4d36e96c-e325-11ce-bfc1-08002be10318}
 Provider    = %ManufacturerName%
 CatalogFile = OrientationMonitor.cat
-DriverVer = 08/03/2026,4.20.10.257
+DriverVer = 08/03/2026,12.27.46.603
 PnpLockdown = 1
 
 [DestinationDirs]
@@ -24,22 +24,27 @@ OrientationMonitor.exe = 1,,
 %ManufacturerName%=Standard,NTARM64
 
 [Standard.NTARM64]
-%OrientationMonitor.DeviceDesc%=OrientationMonitor_Device, Root\OrientationMonitor
-
-[OrientationMonitor_Device.NT]
+;%OrientationMonitor.DeviceDesc%=OrientationMonitor_Device, Root\OrientationMonitor
+%OrientationMonitor.DeviceDesc%=OrientationMonitor_Device, ACPI\QCOM05D2 ; use this in case you want to replace QC Audio Orientation Service
+[OrientationMonitor_Device]
+Include   = machine.inf
+Needs     = NO_DRV
 CopyFiles=OrientationMonitor_Dir
 
 [OrientationMonitor_Dir]
 OrientationMonitor.exe
 
-[OrientationMonitor_Device.NT.Services]
-AddService = OrientationMonitor,, OrientationMonitor_Service_Inst
+[OrientationMonitor_Device.Services]
+Include    = machine.inf
+Needs      = NO_DRV.Services
+AddService = OrientationMonitor, %SPSVCINST_ASSOCSERVICE% , OrientationMonitor_Service_Inst
 
 [OrientationMonitor_Service_Inst]
 DisplayName    = %OrientationMonitor.SVCDESC%
 ServiceType    = 16              ; SERVICE_WIN32_OWN_PROCESS
 StartType      = 2               ; SERVICE_AUTO_START
 ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+Tag            = 1
 ServiceBinary  = %12%\OrientationMonitor.exe
 
 [Strings]
